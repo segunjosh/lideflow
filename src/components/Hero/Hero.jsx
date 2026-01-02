@@ -36,7 +36,7 @@ const Hero = () => {
                         transition={{ duration: 0.8, ease: "backOut" }}
                     >
                         <img
-                            src="/src/assets/logo.png"
+                            src="/logo.png"
                             alt="Lideflow"
                             className="w-full h-auto brightness-200 drop-shadow-[0_0_15px_rgba(0,243,255,0.3)]"
                         />

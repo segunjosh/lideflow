@@ -24,7 +24,8 @@ const Footer = () => {
                     <div className="flex gap-6">
                         <a href="#" className="hover:text-neon-cyan transition-colors">Privacy</a>
                         <a href="#" className="hover:text-neon-cyan transition-colors">Terms</a>
-                        <a href="#" className="hover:text-neon-cyan transition-colors">Twitter</a>
+                        <a href="https://x.com/lideflow" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors">Twitter</a>
+                        <a href="https://linkedin.com/company/lideflow" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors">LinkedIn</a>
                     </div>
                 </div>
             </div>

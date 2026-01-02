@@ -1,9 +1,18 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Globe from '../Globe/Globe';
 
 const Hero = () => {
     const containerRef = useRef(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end end"]
@@ -13,8 +22,11 @@ const Hero = () => {
     const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     return (
-        <section ref={containerRef} className="relative h-[250vh] w-full bg-background">
-            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
+        <section
+            ref={containerRef}
+            className={`relative w-full bg-background ${isMobile ? 'h-[100dvh]' : 'h-[250vh]'}`}
+        >
+            <div className={`${isMobile ? 'relative h-full' : 'sticky top-0 h-[100dvh]'} w-full overflow-hidden`}>
                 {/* Globe Background - Full Screen */}
                 <div className="absolute inset-0 z-0">
                     <Globe scrollYProgress={scrollYProgress} />
@@ -25,7 +37,7 @@ const Hero = () => {
 
                 {/* Centered Text Overlay */}
                 <motion.div
-                    style={{ y, opacity }}
+                    style={isMobile ? {} : { y, opacity }}
                     className="relative z-20 h-full flex flex-col items-center justify-center text-center px-4 pointer-events-none"
                 >
                     {/* Brand Logo - Centered & Scrolls with page */}
@@ -63,15 +75,17 @@ const Hero = () => {
                         A Unified Payment Infrastructure bridging cross-chain stablecoins with traditional financial systems for fast and global payments.
                     </motion.p>
 
-                    {/* Scroll Indicator */}
-                    <motion.div
-                        className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.5, duration: 1 }}
-                    >
-                        <div className="w-[1px] h-24 bg-gradient-to-b from-neon-cyan to-transparent animate-pulse" />
-                    </motion.div>
+                    {/* Scroll Indicator (Hide on mobile since it's standard scroll) */}
+                    {!isMobile && (
+                        <motion.div
+                            className="absolute bottom-10 left-1/2 -translate-x-1/2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 1.5, duration: 1 }}
+                        >
+                            <div className="w-[1px] h-24 bg-gradient-to-b from-neon-cyan to-transparent animate-pulse" />
+                        </motion.div>
+                    )}
                 </motion.div>
             </div>
         </section>

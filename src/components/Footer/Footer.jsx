@@ -19,7 +19,7 @@ const Footer = () => {
                     </h1>
                 </a>
 
-                <div className="mt-12 flex items-center justify-between w-full max-w-4xl mx-auto border-t border-white/10 pt-8 text-gray-500 font-mono text-sm">
+                <div className="mt-12 flex flex-col md:flex-row items-center justify-between gap-4 w-full max-w-4xl mx-auto border-t border-white/10 pt-8 text-gray-500 font-mono text-sm">
                     <span>© 2026 Lideflow Inc.</span>
                     <div className="flex gap-6">
                         <a href="#" className="hover:text-neon-cyan transition-colors">Privacy</a>

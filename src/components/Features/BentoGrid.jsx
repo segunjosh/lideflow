@@ -23,12 +23,12 @@ const VolumeCounter = () => {
     }, [isInView, spring]);
 
     return (
-        <div ref={ref} className="flex flex-col items-center justify-center h-full p-8 text-center">
+        <div ref={ref} className="flex flex-col items-center justify-center h-full p-4 md:p-8 text-center">
             <div className="flex items-center gap-2 mb-4 text-neon-cyan">
                 <Zap className="w-6 h-6 animate-pulse" />
-                <span className="font-mono text-sm uppercase tracking-wider">Stablecoins Processed</span>
+                <span className="font-mono text-xs md:text-sm uppercase tracking-wider">Stablecoins Processed</span>
             </div>
-            <motion.div className="font-sans font-black text-6xl md:text-7xl text-white">
+            <motion.div className="font-sans font-black text-4xl sm:text-5xl md:text-7xl text-white break-all">
                 {value}
             </motion.div>
             <p className="mt-4 text-gray-400 max-w-md text-sm">

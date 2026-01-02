@@ -240,7 +240,7 @@ const Globe = ({ scrollYProgress }) => {
     }, []);
 
     return (
-        <div className="w-full h-full">
+        <div className={`w-full h-full ${isMobile ? 'pointer-events-none' : ''}`}>
             <Canvas camera={{ position: [0, 0, isMobile ? 12 : 4.9], fov: 45 }}>
                 <ScrollCamera scrollYProgress={scrollYProgress} isMobile={isMobile} />
                 <ambientLight intensity={0.5} />

@@ -182,7 +182,24 @@ const CountryMarker = ({ country, radius }) => {
     );
 };
 
-const Globe = () => {
+// Camera controller for scroll animations
+const ScrollCamera = ({ scrollYProgress }) => {
+    useFrame((state) => {
+        if (scrollYProgress) {
+            const progress = scrollYProgress.get();
+            // 4.5 = Close (Big), 22 = Far (Small but visible)
+            const targetDistance = THREE.MathUtils.lerp(4.9, 22, progress);
+
+            const currentDist = state.camera.position.length();
+            const nextDist = THREE.MathUtils.lerp(currentDist, targetDistance, 0.1);
+
+            state.camera.position.setLength(nextDist);
+        }
+    });
+    return null;
+};
+
+const Globe = ({ scrollYProgress }) => {
     const radius = 3.5;
 
     // Generate arcs from countries
@@ -205,7 +222,8 @@ const Globe = () => {
 
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 9], fov: 45 }}>
+            <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }}>
+                <ScrollCamera scrollYProgress={scrollYProgress} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 5]} intensity={1} color="#00f3ff" />
                 <pointLight position={[-10, -5, -5]} intensity={1} color="#ffd700" />
@@ -238,7 +256,7 @@ const Globe = () => {
                 </group>
 
                 <OrbitControls
-                    enableZoom={true}
+                    enableZoom={false}
                     enableRotate={true}
                     autoRotate
                     autoRotateSpeed={0.5}

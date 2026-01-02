@@ -1,16 +1,58 @@
-# React + Vite
+# Lideflow - Unified Payment Infrastructure
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance landing page for **Lideflow**, a financial infrastructure platform bridging cross-chain stablecoins with traditional payment systems.
 
-Currently, two official plugins are available:
+![Lideflow Preview](/src/assets/logo.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## React Compiler
+- **Interactive 3D Globe**: Visualizes global currency flows with real-time animations using `Three.js` and `@react-three/fiber`.
+- **Modern UI/UX**: Glassmorphism aesthetic, sleek animations, and responsive design powered by `TailwindCSS` and `Framer Motion`.
+- **Dynamic Components**:
+  - **Bento Grid**: Feature highlights with hover interactions.
+  - **Velocity Ticker**: Infinite scrolling brand partnerships.
+  - **API Showcase**: Interactive code blocks demonstrating ease of integration.
+  - **FAQ Accordion**: Clean, accessible Q&A section.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- **Framework**: React 19 + Vite
+- **Styling**: TailwindCSS
+- **Animations**: Framer Motion, GSAP
+- **3D Graphics**: Three.js, React Three Fiber, Drei
+- **Icons**: Lucide React
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📦 Installation
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/segunjosh/lideflow.git
+    cd lideflow
+    ```
+
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for production**:
+    ```bash
+    npm run build
+    ```
+
+## 🌍 Globe Component Details
+
+The interactive globe component (`src/components/Globe/Globe.jsx`) features:
+- **Real-time Rendering**: Built with `@react-three/fiber`.
+- **Data Visualization**: Shows top financial nexuses (3 per continent) and animated transaction arcs.
+- **Interactivity**: full mouse/touch control (rotate/zoom).
+- **Custom Shaders/Materials**: Uses a specular earth map for accurate landmass representation.
+
+## 📄 License
+
+Private - Lideflow.

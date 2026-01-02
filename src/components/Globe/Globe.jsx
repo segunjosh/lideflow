@@ -1,3 +1,4 @@
+
 import { useRef, useMemo, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Html } from '@react-three/drei';
@@ -183,12 +184,21 @@ const CountryMarker = ({ country, radius }) => {
 };
 
 // Camera controller for scroll animations
-const ScrollCamera = ({ scrollYProgress }) => {
+const ScrollCamera = ({ scrollYProgress, isMobile }) => {
     useFrame((state) => {
         if (scrollYProgress) {
             const progress = scrollYProgress.get();
-            // 4.5 = Close (Big), 22 = Far (Small but visible)
-            const targetDistance = THREE.MathUtils.lerp(4.9, 22, progress);
+
+            // Delay zoom until 25% scroll to let text fade first
+            const delayedProgress = THREE.MathUtils.smoothstep(progress, 0.25, 1.0);
+
+            // Zoom Ranges
+            // Desktop: 4.9 (Big) -> 22 (Small)
+            // Mobile: 12 (Smaller Start) -> 25 (Small)
+            const startDist = isMobile ? 12 : 4.9;
+            const endDist = isMobile ? 25 : 22;
+
+            const targetDistance = THREE.MathUtils.lerp(startDist, endDist, delayedProgress);
 
             const currentDist = state.camera.position.length();
             const nextDist = THREE.MathUtils.lerp(currentDist, targetDistance, 0.1);
@@ -201,6 +211,15 @@ const ScrollCamera = ({ scrollYProgress }) => {
 
 const Globe = ({ scrollYProgress }) => {
     const radius = 3.5;
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Detect mobile viewport
+    useEffect(() => {
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // Generate arcs from countries
     const arcs = useMemo(() => {
@@ -222,8 +241,8 @@ const Globe = ({ scrollYProgress }) => {
 
     return (
         <div className="w-full h-full">
-            <Canvas camera={{ position: [0, 0, 4.5], fov: 45 }}>
-                <ScrollCamera scrollYProgress={scrollYProgress} />
+            <Canvas camera={{ position: [0, 0, isMobile ? 12 : 4.9], fov: 45 }}>
+                <ScrollCamera scrollYProgress={scrollYProgress} isMobile={isMobile} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 5]} intensity={1} color="#00f3ff" />
                 <pointLight position={[-10, -5, -5]} intensity={1} color="#ffd700" />
@@ -257,7 +276,7 @@ const Globe = ({ scrollYProgress }) => {
 
                 <OrbitControls
                     enableZoom={false}
-                    enableRotate={true}
+                    enableRotate={!isMobile}
                     autoRotate
                     autoRotateSpeed={0.5}
                     enablePan={false}

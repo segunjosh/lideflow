@@ -53,21 +53,45 @@ const LockModel = () => {
             {/* Lock Body */}
             <mesh position={[0, -0.6, 0]}>
                 <boxGeometry args={[1.6, 1.4, 0.5]} />
-                <meshStandardMaterial color="#ffd700" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial
+                    color="#FFC107"
+                    metalness={0.95}
+                    roughness={0.05}
+                    emissive="#FFC107"
+                    emissiveIntensity={0.3}
+                />
             </mesh>
             {/* Shackle */}
             <mesh position={[0, 0.3, 0]}>
                 <torusGeometry args={[0.6, 0.2, 16, 32, Math.PI]} />
-                <meshStandardMaterial color="#b4b4b4" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial
+                    color="#EFEFEF"
+                    metalness={0.95}
+                    roughness={0.05}
+                    emissive="#FFFFFF"
+                    emissiveIntensity={0.2}
+                />
             </mesh>
             {/* Shackle Legs */}
             <mesh position={[-0.6, 0.3, 0]}>
                 <cylinderGeometry args={[0.2, 0.2, 0.6]} />
-                <meshStandardMaterial color="#b4b4b4" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial
+                    color="#EFEFEF"
+                    metalness={0.95}
+                    roughness={0.05}
+                    emissive="#FFFFFF"
+                    emissiveIntensity={0.2}
+                />
             </mesh>
             <mesh position={[0.6, 0.3, 0]}>
                 <cylinderGeometry args={[0.2, 0.2, 0.6]} />
-                <meshStandardMaterial color="#b4b4b4" metalness={0.9} roughness={0.1} />
+                <meshStandardMaterial
+                    color="#EFEFEF"
+                    metalness={0.95}
+                    roughness={0.05}
+                    emissive="#FFFFFF"
+                    emissiveIntensity={0.2}
+                />
             </mesh>
         </group>
     );
@@ -83,9 +107,11 @@ const SecurityCard = () => {
 
             <div className="w-full h-48 md:h-64 cursor-grab active:cursor-grabbing">
                 <Canvas camera={{ position: [0, 0, 4] }}>
-                    <ambientLight intensity={0.5} />
-                    <spotLight position={[5, 10, 5]} intensity={1.5} angle={0.5} penumbra={1} />
-                    <pointLight position={[-5, -5, -5]} color="#00f3ff" intensity={1} />
+                    <ambientLight intensity={2} />
+                    <spotLight position={[5, 10, 5]} intensity={4} angle={0.5} penumbra={1} />
+                    <pointLight position={[-5, -5, -5]} color="#00f3ff" intensity={3} />
+                    <pointLight position={[0, 5, 5]} color="#ffffff" intensity={3} />
+                    <pointLight position={[3, 0, 3]} color="#ffffff" intensity={2} />
                     <Center>
                         <LockModel />
                     </Center>
@@ -137,7 +163,7 @@ const GlobalReachCard = () => {
                         <div className="flex justify-between text-xs text-white">
                             <span>USDT</span>
                             <span className="text-gray-400">→</span>
-                            <span>NGN</span>
+                            <span>GBP</span>
                         </div>
                         <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
                             <motion.div

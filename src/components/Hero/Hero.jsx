@@ -14,7 +14,7 @@ const Hero = () => {
 
     return (
         <section ref={containerRef} className="relative h-[250vh] w-full bg-background">
-            <div className="sticky top-0 h-screen w-full overflow-hidden">
+            <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
                 {/* Globe Background - Full Screen */}
                 <div className="absolute inset-0 z-0">
                     <Globe scrollYProgress={scrollYProgress} />
@@ -30,7 +30,7 @@ const Hero = () => {
                 >
                     {/* Brand Logo - Centered & Scrolls with page */}
                     <motion.div
-                        className="mb-8 w-24 md:w-32 lg:w-40"
+                        className="mb-6 md:mb-8 w-20 md:w-32 lg:w-40"
                         initial={{ opacity: 0, scale: 0.5 }}
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.8, ease: "backOut" }}
@@ -43,7 +43,7 @@ const Hero = () => {
                     </motion.div>
 
                     <motion.h1
-                        className="font-sans font-extrabold text-6xl md:text-7xl lg:text-9xl tracking-tighter text-white mb-6 drop-shadow-2xl"
+                        className="font-sans font-extrabold text-5xl md:text-7xl lg:text-9xl tracking-tighter text-white mb-4 md:mb-6 drop-shadow-2xl"
                         initial={{ opacity: 0, y: 50, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}

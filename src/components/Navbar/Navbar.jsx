@@ -16,7 +16,7 @@ const Navbar = () => {
     return (
         <div className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50">
             <motion.nav
-                className="flex items-center gap-2 px-4 py-3 rounded-full bg-surface-glass backdrop-blur-lg border border-white/10 shadow-2xl"
+                className="flex items-center gap-1 md:gap-2 px-3 md:px-4 py-2 md:py-3 rounded-full bg-surface-glass backdrop-blur-lg border border-white/10 shadow-2xl max-w-[95vw]"
                 initial={{ y: 100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}

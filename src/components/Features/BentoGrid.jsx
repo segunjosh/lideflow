@@ -130,32 +130,75 @@ const SecurityCard = () => {
 // 3. Network Visualization Card
 const GlobalReachCard = () => {
     return (
-        <div className="relative h-full flex flex-col p-8 overflow-visible group">
-            <div className="relative z-20 flex flex-col h-full">
-                <div className="flex items-center gap-2 mb-4 text-neon-cyan">
-                    <Globe className="w-5 h-5" />
-                    <span className="font-mono text-sm uppercase">Global Remittance</span>
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-2">Confidence In Every Transaction</h3>
-                <p className="text-gray-400 text-sm max-w-sm mb-6">
-                    Offer a fast and secure solution for your users to send and receive money globally.
-                </p>
+        <div className="relative h-full flex flex-col p-4 sm:p-6 md:p-8 overflow-visible group">
+            {/* Background Elements */}
+            <div className="absolute inset-0 bg-gradient-to-br from-electric-gold/5 via-transparent to-neon-cyan/5 opacity-50" />
 
-                {/* Floating "Live Transactions" Card - Pac-Man Style */}
-                <div className="mt-auto md:mt-0 self-center md:self-start bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 w-full max-w-[280px] transform transition-transform group-hover:scale-105">
-                    <div className="flex items-center gap-2 mb-4">
-                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-xs font-mono text-gray-300">Live Swaps</span>
+            {/* Content Grid - Left: Text, Right: Animation */}
+            <div className="relative z-10 flex flex-col md:flex-row items-start justify-between gap-6 md:gap-8 h-full">
+                {/* Left Side - Descriptive Content */}
+                <div className="flex-1 space-y-4 md:space-y-6">
+                    <div>
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 md:mb-4">
+                            <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                                Global Remittance
+                            </span>
+                        </h3>
+                        <p className="text-gray-400 text-sm sm:text-base leading-relaxed max-w-xl">
+                            Enable seamless cross-border payments with instant currency conversion.
+                            Watch as local currencies transform into stablecoins and back, powering
+                            real-time global transactions.
+                        </p>
                     </div>
 
-                    <div className="space-y-4">
+                    {/* Feature Highlights */}
+                    <div className="space-y-3 md:space-y-4">
+                        <div className="flex items-start gap-2.5 md:gap-3">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-neon-cyan/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-neon-cyan" />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-semibold text-xs sm:text-sm mb-0.5 md:mb-1">Instant Conversion</h4>
+                                <p className="text-gray-500 text-[11px] sm:text-xs">Convert between local currencies and stablecoins in real-time</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 md:gap-3">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-electric-gold/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-electric-gold" />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-semibold text-xs sm:text-sm mb-0.5 md:mb-1">Multi-Currency Support</h4>
+                                <p className="text-gray-500 text-[11px] sm:text-xs">Support for KES, NGN, GHS, and major stablecoins</p>
+                            </div>
+                        </div>
+
+                        <div className="flex items-start gap-2.5 md:gap-3">
+                            <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-green-400/20 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <div className="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-green-400" />
+                            </div>
+                            <div>
+                                <h4 className="text-white font-semibold text-xs sm:text-sm mb-0.5 md:mb-1">Low Fees</h4>
+                                <p className="text-gray-500 text-[11px] sm:text-xs">Competitive rates with transparent pricing</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Right Side - Pac-Man Animation */}
+                <div className="self-center bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 sm:p-5 md:p-6 w-full md:max-w-[420px] transform transition-transform group-hover:scale-105">
+                    <div className="flex items-center gap-2 mb-4 sm:mb-5 md:mb-6">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-[10px] sm:text-[11px] md:text-xs font-mono text-gray-300">Transforming Global Remittance</span>
+                    </div>
+
+                    <div className="space-y-4 sm:space-y-5 md:space-y-6">
                         {/* Transaction 1: KES eating USDC */}
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-[10px] font-mono text-gray-400">KES → USDC</span>
-                                <span className="text-[9px] text-gray-500 font-mono">$1,250</span>
                             </div>
-                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                            <div className="relative h-10 bg-white/5 rounded-lg overflow-hidden">
                                 {/* Dots/Pills to be eaten */}
                                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
                                     {[...Array(5)].map((_, i) => (
@@ -167,9 +210,9 @@ const GlobalReachCard = () => {
                                                 scale: [1, 0, 1]
                                             }}
                                             transition={{
-                                                duration: 3,
+                                                duration: 7,
                                                 repeat: Infinity,
-                                                delay: i * 0.15,
+                                                delay: i * 0.3,
                                                 times: [0, 0.5, 1]
                                             }}
                                         />
@@ -183,7 +226,7 @@ const GlobalReachCard = () => {
                                         left: ["-15%", "100%"]
                                     }}
                                     transition={{
-                                        duration: 3,
+                                        duration: 7,
                                         repeat: Infinity,
                                         ease: "linear"
                                     }}
@@ -223,9 +266,8 @@ const GlobalReachCard = () => {
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-[10px] font-mono text-gray-400">USDT → GHS</span>
-                                <span className="text-[9px] text-gray-500 font-mono">$890</span>
                             </div>
-                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                            <div className="relative h-10 bg-white/5 rounded-lg overflow-hidden">
                                 {/* Dots/Pills to be eaten */}
                                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
                                     {[...Array(5)].map((_, i) => (
@@ -237,32 +279,33 @@ const GlobalReachCard = () => {
                                                 scale: [1, 0, 1]
                                             }}
                                             transition={{
-                                                duration: 3,
+                                                duration: 7,
                                                 repeat: Infinity,
-                                                delay: 1 + i * 0.15,
+                                                delay: 2 + (4 - i) * 0.3,
                                                 times: [0, 0.5, 1]
                                             }}
                                         />
                                     ))}
                                 </div>
 
-                                {/* Pac-Man USDT chasing */}
+                                {/* Pac-Man USDT chasing (Right to Left) */}
                                 <motion.div
                                     className="absolute top-1/2 -translate-y-1/2 flex items-center"
                                     animate={{
-                                        left: ["-15%", "100%"]
+                                        left: ["115%", "-15%"]
                                     }}
                                     transition={{
-                                        duration: 3,
+                                        duration: 7,
                                         repeat: Infinity,
                                         ease: "linear",
-                                        delay: 1
+                                        delay: 2
                                     }}
                                 >
                                     <div className="relative">
-                                        {/* Pac-Man mouth animation */}
+                                        {/* Pac-Man mouth animation (facing left) */}
                                         <motion.div
                                             className="w-6 h-6 bg-electric-gold rounded-full relative overflow-hidden"
+                                            style={{ transform: "scaleX(-1)" }}
                                             animate={{
                                                 clipPath: [
                                                     "polygon(100% 50%, 0% 0%, 0% 100%)",
@@ -276,7 +319,7 @@ const GlobalReachCard = () => {
                                                 ease: "easeInOut"
                                             }}
                                         >
-                                            <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="absolute inset-0 flex items-center justify-center" style={{ transform: "scaleX(-1)" }}>
                                                 <span className="text-[6px] font-bold text-black font-mono">USDT</span>
                                             </div>
                                         </motion.div>
@@ -284,7 +327,7 @@ const GlobalReachCard = () => {
                                 </motion.div>
 
                                 {/* Target GHS badge */}
-                                <div className="absolute top-1/2 -translate-y-1/2 right-2 bg-electric-gold/20 border border-electric-gold px-2 py-0.5 rounded text-[8px] font-bold text-electric-gold font-mono">
+                                <div className="absolute top-1/2 -translate-y-1/2 left-2 bg-electric-gold/20 border border-electric-gold px-2 py-0.5 rounded text-[8px] font-bold text-electric-gold font-mono">
                                     GHS
                                 </div>
                             </div>
@@ -294,9 +337,8 @@ const GlobalReachCard = () => {
                         <div className="relative">
                             <div className="flex items-center justify-between mb-2">
                                 <span className="text-[10px] font-mono text-gray-400">NGN → USDT</span>
-                                <span className="text-[9px] text-gray-500 font-mono">$2,100</span>
                             </div>
-                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                            <div className="relative h-10 bg-white/5 rounded-lg overflow-hidden">
                                 {/* Dots/Pills to be eaten */}
                                 <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
                                     {[...Array(5)].map((_, i) => (
@@ -308,9 +350,9 @@ const GlobalReachCard = () => {
                                                 scale: [1, 0, 1]
                                             }}
                                             transition={{
-                                                duration: 3,
+                                                duration: 7,
                                                 repeat: Infinity,
-                                                delay: 2 + i * 0.15,
+                                                delay: 4 + i * 0.3,
                                                 times: [0, 0.5, 1]
                                             }}
                                         />
@@ -324,10 +366,10 @@ const GlobalReachCard = () => {
                                         left: ["-15%", "100%"]
                                     }}
                                     transition={{
-                                        duration: 3,
+                                        duration: 7,
                                         repeat: Infinity,
                                         ease: "linear",
-                                        delay: 2
+                                        delay: 4
                                     }}
                                 >
                                     <div className="relative">
@@ -385,7 +427,7 @@ const CardWrapper = ({ children, className }) => {
     return (
         <motion.div
             className={clsx(
-                "relative overflow-hidden rounded-3xl bg-surface-glass border border-white/5 backdrop-blur-md group",
+                "relative overflow-visible md:overflow-hidden rounded-3xl bg-surface-glass border border-white/5 backdrop-blur-md group",
                 "hover:border-white/20 transition-colors duration-500",
                 className
             )}
@@ -422,7 +464,7 @@ const BentoGrid = () => {
                     {/* Card 3: Global Reach (Full width or span) - Let's do 2-1 layout, or just 3 cols */}
                     {/* Actually, let's mix it up. 3 Equal cols? Or Bento style. */}
                     {/* Let's make Global Reach standard */}
-                    <CardWrapper className="md:col-span-3 min-h-[500px]">
+                    <CardWrapper className="md:col-span-3 min-h-[600px] md:min-h-[500px]">
                         <GlobalReachCard />
                     </CardWrapper>
                 </div>

@@ -209,6 +209,33 @@ const ScrollCamera = ({ scrollYProgress, isMobile }) => {
     return null;
 };
 
+// Mobile Fallback Component (2D Flat Map)
+const GlobeMobileFallback = () => {
+    return (
+        <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
+            {/* Background Map Image */}
+            <div
+                className="absolute inset-0 opacity-40"
+                style={{
+                    backgroundImage: `url(${earthSpecularMap})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    filter: 'grayscale(100%) brightness(0.5) sepia(1) hue-rotate(180deg) saturate(3)' // Matrix cyan tint
+                }}
+            />
+
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+
+            {/* Animated Dots / Grid (CSS only, lightweight) */}
+            <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" /> {/* Optional if grid asset exists, else generic dots */}
+
+            {/* Simple decorative circle to mimic globe shape */}
+            <div className="w-[80vw] h-[80vw] rounded-full border border-neon-cyan/20 bg-neon-cyan/5 blur-3xl animate-pulse-slow position-absolute" />
+        </div>
+    );
+};
+
 const Globe = ({ scrollYProgress }) => {
     const radius = 3.5;
     const [isMobile, setIsMobile] = useState(() => {
@@ -244,15 +271,17 @@ const Globe = ({ scrollYProgress }) => {
         });
     }, []);
 
+    // Return 2D Fallback on mobile
+    if (isMobile) {
+        return <GlobeMobileFallback />;
+    }
+
     return (
         <div
-            className={`w-full h-full ${isMobile ? 'pointer-events-none' : ''}`}
+            className="w-full h-full"
             style={{ touchAction: 'pan-y' }} // Ensure browser knows vertical scroll is allowed
         >
-            <Canvas
-                className={isMobile ? 'pointer-events-none' : ''}
-                camera={{ position: [0, 0, isMobile ? 12 : 4.9], fov: 45 }}
-            >
+            <Canvas camera={{ position: [0, 0, 4.9], fov: 45 }}>
                 <ScrollCamera scrollYProgress={scrollYProgress} isMobile={isMobile} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 5]} intensity={1} color="#00f3ff" />

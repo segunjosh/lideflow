@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar/Navbar';
 import Hero from './components/Hero/Hero';
 import VelocityTicker from './components/Features/VelocityTicker';
@@ -6,10 +8,26 @@ import Solutions from './components/Solutions/Solutions';
 import Integration from './components/Integration/Integration';
 import Experience from './components/Experience/Experience';
 import Footer from './components/Footer/Footer';
+import Loader from './components/UI/Loader';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial load or wait for assets
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2000); // 2 seconds loading time
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-background min-h-screen text-white scrollbar-hide">
+      <AnimatePresence mode="wait">
+        {loading && <Loader />}
+      </AnimatePresence>
+
       <Navbar />
 
       <main>

@@ -223,7 +223,7 @@ const GlobalReachCard = () => {
                                 <motion.div
                                     className="absolute top-1/2 -translate-y-1/2 flex items-center"
                                     animate={{
-                                        left: ["-15%", "100%"]
+                                        left: ["-15%", "80%"]
                                     }}
                                     transition={{
                                         duration: 7,
@@ -292,7 +292,7 @@ const GlobalReachCard = () => {
                                 <motion.div
                                     className="absolute top-1/2 -translate-y-1/2 flex items-center"
                                     animate={{
-                                        left: ["115%", "-15%"]
+                                        left: ["125%", "18%"]
                                     }}
                                     transition={{
                                         duration: 7,
@@ -363,7 +363,7 @@ const GlobalReachCard = () => {
                                 <motion.div
                                     className="absolute top-1/2 -translate-y-1/2 flex items-center"
                                     animate={{
-                                        left: ["-15%", "100%"]
+                                        left: ["-15%", "82%"]
                                     }}
                                     transition={{
                                         duration: 7,

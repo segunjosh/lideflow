@@ -149,9 +149,9 @@ const GlobalReachCard = () => {
                     </div>
                     <div className="space-y-2">
                         <div className="flex justify-between text-xs text-white">
-                            <span>USDC</span>
+                            <span>KES</span>
                             <span className="text-gray-400">→</span>
-                            <span>EUR</span>
+                            <span>USDC</span>
                         </div>
                         <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
                             <motion.div
@@ -163,7 +163,7 @@ const GlobalReachCard = () => {
                         <div className="flex justify-between text-xs text-white">
                             <span>USDT</span>
                             <span className="text-gray-400">→</span>
-                            <span>GBP</span>
+                            <span>GHS</span>
                         </div>
                         <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
                             <motion.div

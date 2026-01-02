@@ -211,6 +211,7 @@ const ScrollCamera = ({ scrollYProgress, isMobile }) => {
 
 // Mobile Fallback Component (2D Flat Map)
 const GlobeMobileFallback = () => {
+    // Define simple transaction routes (CSS-based animation)
     return (
         <div className="w-full h-full flex items-center justify-center overflow-hidden relative">
             {/* Background Map Image */}
@@ -231,7 +232,57 @@ const GlobeMobileFallback = () => {
             <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20" /> {/* Optional if grid asset exists, else generic dots */}
 
             {/* Simple decorative circle to mimic globe shape */}
-            <div className="w-[80vw] h-[80vw] rounded-full border border-neon-cyan/20 bg-neon-cyan/5 blur-3xl animate-pulse-slow position-absolute" />
+            <div className="w-[80vw] h-[80vw] rounded-full border border-neon-cyan/20 bg-neon-cyan/5 blur-3xl animate-pulse-slow absolute" />
+
+            {/* Simulated Transactions (CSS Animations) */}
+            {/* Route 1: NA -> EU */}
+            <div className="absolute top-[35%] left-[20%] w-full h-full pointer-events-none">
+                <div className="absolute w-2 h-2 bg-neon-cyan rounded-full shadow-[0_0_10px_#00f3ff] animate-[ping_1.5s_ease-in-out_infinite]" />
+                <div className="absolute w-1 h-1 bg-white rounded-full transition-all duration-[3000ms] ease-linear"
+                    style={{
+                        animation: 'move-na-eu 3s linear infinite'
+                    }}
+                />
+            </div>
+            {/* Route 2: EU -> Asia */}
+            <div className="absolute top-[30%] left-[48%] w-full h-full pointer-events-none">
+                <div className="absolute w-2 h-2 bg-electric-gold rounded-full shadow-[0_0_10px_#ffd700] animate-[ping_2s_ease-in-out_infinite]" />
+                <div className="absolute w-1 h-1 bg-white rounded-full"
+                    style={{
+                        animation: 'move-eu-asia 4s linear infinite 1s'
+                    }}
+                />
+            </div>
+            {/* Route 3: SA -> Africa */}
+            <div className="absolute top-[60%] left-[28%] w-full h-full pointer-events-none">
+                <div className="absolute w-2 h-2 bg-neon-cyan rounded-full shadow-[0_0_10px_#00f3ff] animate-[ping_2.5s_ease-in-out_infinite]" />
+                <div className="absolute w-1 h-1 bg-white rounded-full"
+                    style={{
+                        animation: 'move-sa-af 3.5s linear infinite 0.5s'
+                    }}
+                />
+            </div>
+
+            <style>{`
+                @keyframes move-na-eu {
+                    0% { transform: translate(0, 0); opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { transform: translate(120px, -20px); opacity: 0; }
+                }
+                @keyframes move-eu-asia {
+                    0% { transform: translate(0, 0); opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { transform: translate(100px, 40px); opacity: 0; }
+                }
+                @keyframes move-sa-af {
+                    0% { transform: translate(0, 0); opacity: 0; }
+                    10% { opacity: 1; }
+                    90% { opacity: 1; }
+                    100% { transform: translate(110px, -10px); opacity: 0; }
+                }
+            `}</style>
         </div>
     );
 };

@@ -211,11 +211,16 @@ const ScrollCamera = ({ scrollYProgress, isMobile }) => {
 
 const Globe = ({ scrollYProgress }) => {
     const radius = 3.5;
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1024;
+        }
+        return false;
+    });
 
     // Detect mobile viewport
     useEffect(() => {
-        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        const checkMobile = () => setIsMobile(window.innerWidth < 1024);
         checkMobile();
         window.addEventListener('resize', checkMobile);
         return () => window.removeEventListener('resize', checkMobile);

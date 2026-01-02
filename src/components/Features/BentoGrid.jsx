@@ -101,34 +101,101 @@ const SecurityCard = () => {
     );
 };
 
-// 3. Abstract Map Card
+// 3. Network Visualization Card
 const GlobalReachCard = () => {
     return (
         <div className="relative h-full flex flex-col p-8 overflow-hidden group">
-            <div className="relative z-10">
+            <div className="relative z-20 flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-4 text-neon-cyan">
                     <Globe className="w-5 h-5" />
                     <span className="font-mono text-sm uppercase">Global Remittance</span>
                 </div>
                 <h3 className="text-3xl font-bold text-white mb-2">Confidence In Every Transaction</h3>
-                <p className="text-gray-400 text-sm max-w-sm">
+                <p className="text-gray-400 text-sm max-w-sm mb-6">
                     Offer a fast and secure solution for your users to send and receive money globally.
                 </p>
+
+                {/* Floating "Live Status" Card - Centered on Mobile */}
+                <div className="mt-auto md:mt-0 self-center md:self-start bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 w-full max-w-[240px] transform transition-transform group-hover:scale-105">
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                        <span className="text-xs font-mono text-gray-300">Live Network</span>
+                    </div>
+                    <div className="space-y-2">
+                        <div className="flex justify-between text-xs text-white">
+                            <span>USDC</span>
+                            <span className="text-gray-400">→</span>
+                            <span>EUR</span>
+                        </div>
+                        <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                            <motion.div
+                                className="h-full bg-neon-cyan"
+                                animate={{ x: ["-100%", "100%"] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                            />
+                        </div>
+                        <div className="flex justify-between text-xs text-white">
+                            <span>USDT</span>
+                            <span className="text-gray-400">→</span>
+                            <span>NGN</span>
+                        </div>
+                        <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
+                            <motion.div
+                                className="h-full bg-electric-gold"
+                                animate={{ x: ["-100%", "100%"] }}
+                                transition={{ duration: 1.8, repeat: Infinity, ease: "linear", delay: 0.5 }}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            {/* Abstract Map Graphic */}
-            <div className="absolute inset-0 z-0 opacity-20 group-hover:opacity-40 transition-opacity duration-500">
-                {/* Simulated Dot Map pattern using CSS radial gradients or SVGs */}
-                <svg className="w-full h-full text-white" fill="currentColor" viewBox="0 0 100 100" preserveAspectRatio="none">
-                    <pattern id="grid-pattern" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
-                        <circle cx="2" cy="2" r="1" className="text-gray-600" />
-                    </pattern>
-                    <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+            {/* Abstract Network Background */}
+            <div className="absolute inset-0 z-0">
+                <svg className="w-full h-full opacity-30" viewBox="0 0 400 400">
+                    <defs>
+                        <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0%" stopColor="#00f3ff" stopOpacity="0" />
+                            <stop offset="50%" stopColor="#00f3ff" stopOpacity="1" />
+                            <stop offset="100%" stopColor="#00f3ff" stopOpacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    {/* Connection Lines */}
+                    {[...Array(6)].map((_, i) => (
+                        <motion.line
+                            key={i}
+                            x1={200} y1={200}
+                            x2={200 + Math.cos(i) * 150} y2={200 + Math.sin(i) * 150}
+                            stroke="url(#netGrad)"
+                            strokeWidth="1"
+                            initial={{ pathLength: 0, opacity: 0 }}
+                            animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
+                        />
+                    ))}
+
+                    {/* Nodes */}
+                    {[...Array(6)].map((_, i) => (
+                        <motion.circle
+                            key={`node-${i}`}
+                            cx={200 + Math.cos(i) * 150} cy={200 + Math.sin(i) * 150}
+                            r="4"
+                            fill="#fff"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: [0, 1, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 + 1.5, ease: "easeInOut" }}
+                        />
+                    ))}
+
+                    {/* Central Hub */}
+                    <circle cx="200" cy="200" r="20" fill="url(#netGrad)" opacity="0.2" className="animate-pulse" />
+                    <circle cx="200" cy="200" r="8" fill="#fff" />
                 </svg>
-                {/* Glowing hotspots */}
-                <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-neon-cyan/30 rounded-full blur-[40px] animate-pulse" />
-                <div className="absolute bottom-1/3 right-1/4 w-24 h-24 bg-electric-gold/20 rounded-full blur-[30px] animate-pulse delay-700" />
             </div>
+
+            {/* Gradient Glow */}
+            <div className="absolute bottom-0 right-0 w-64 h-64 bg-neon-cyan/10 rounded-full blur-[80px] pointer-events-none" />
         </div>
     );
 };

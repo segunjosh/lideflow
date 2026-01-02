@@ -20,3 +20,28 @@
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* Mobile Scroll Optimizations */
+@media (max-width: 1024px) {
+  /* Enable smooth scrolling with GPU acceleration */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Optimize animated elements */
+  [class*="animate-"],
+  [class*="motion-"] {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Optimize scroll containers */
+  body {
+    overscroll-behavior-y: none;
+  }
+  
+  /* Contain layout shifts */
+  section {
+    contain: layout style;
+  }
+}

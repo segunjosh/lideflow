@@ -5,7 +5,6 @@ import sanofi from '../../assets/logos/sanofi.png';
 import onafriq from '../../assets/logos/onafriq.png';
 import societeGenerale from '../../assets/logos/societe-generale.png';
 import aave from '../../assets/logos/aave.png';
-import ovh from '../../assets/logos/ovh.png';
 
 const logos = [
     { name: 'Etisalat', src: etisalat },
@@ -13,7 +12,6 @@ const logos = [
     { name: 'Onafriq', src: onafriq },
     { name: 'Societe Generale', src: societeGenerale },
     { name: 'Aave', src: aave },
-    { name: 'OVHcloud', src: ovh },
     { name: 'Techstars', src: '/techstars_logo.png' },
     { name: 'AWS', src: '/aws_logo.png' }
 ];

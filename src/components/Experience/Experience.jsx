@@ -13,10 +13,29 @@ const logos = [
     { name: 'Onafriq', src: onafriq },
     { name: 'Societe Generale', src: societeGenerale },
     { name: 'Aave', src: aave },
-    { name: 'OVHcloud', src: ovh }
+    { name: 'OVHcloud', src: ovh },
+    { name: 'Techstars', src: '/techstars_logo.png' },
+    { name: 'AWS', src: '/aws_logo.png' }
 ];
 
 const Experience = () => {
+    const row1 = logos.slice(0, 5);
+    const row2 = logos.slice(5);
+
+    const LogoRow = ({ items }) => (
+        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 w-full">
+            {items.map((logo, index) => (
+                <div key={index} className="relative h-16 w-auto flex items-center justify-center min-w-[120px]">
+                    <img
+                        src={logo.src}
+                        alt={logo.name}
+                        className="h-full w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
+                    />
+                </div>
+            ))}
+        </div>
+    );
+
     return (
         <section className="py-32 bg-background relative overflow-hidden">
             {/* Subtle background gradient */}
@@ -36,21 +55,17 @@ const Experience = () => {
                     </motion.div>
 
                     <motion.div
-                        className="flex flex-row flex-wrap md:flex-nowrap justify-center items-center gap-8 md:gap-16 w-full opacity-100"
+                        className="flex flex-col items-center gap-8 md:gap-12 w-full opacity-100"
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4, duration: 0.8 }}
                     >
-                        {logos.map((logo, index) => (
-                            <div key={index} className="relative h-16 w-auto flex items-center justify-center min-w-[120px]">
-                                <img
-                                    src={logo.src}
-                                    alt={logo.name}
-                                    className="h-full w-auto object-contain brightness-0 invert opacity-90 hover:opacity-100 transition-opacity duration-300"
-                                />
-                            </div>
-                        ))}
+                        {/* Row 1 (5 logos) */}
+                        <LogoRow items={row1} />
+
+                        {/* Row 2 (3 logos) */}
+                        <LogoRow items={row2} />
                     </motion.div>
                 </div>
             </div>

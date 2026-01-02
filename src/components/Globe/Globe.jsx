@@ -245,8 +245,14 @@ const Globe = ({ scrollYProgress }) => {
     }, []);
 
     return (
-        <div className={`w-full h-full ${isMobile ? 'pointer-events-none' : ''}`}>
-            <Canvas camera={{ position: [0, 0, isMobile ? 12 : 4.9], fov: 45 }}>
+        <div
+            className={`w-full h-full ${isMobile ? 'pointer-events-none' : ''}`}
+            style={{ touchAction: 'pan-y' }} // Ensure browser knows vertical scroll is allowed
+        >
+            <Canvas
+                className={isMobile ? 'pointer-events-none' : ''}
+                camera={{ position: [0, 0, isMobile ? 12 : 4.9], fov: 45 }}
+            >
                 <ScrollCamera scrollYProgress={scrollYProgress} isMobile={isMobile} />
                 <ambientLight intensity={0.5} />
                 <pointLight position={[10, 10, 5]} intensity={1} color="#00f3ff" />

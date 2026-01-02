@@ -130,7 +130,7 @@ const SecurityCard = () => {
 // 3. Network Visualization Card
 const GlobalReachCard = () => {
     return (
-        <div className="relative h-full flex flex-col p-8 overflow-hidden group">
+        <div className="relative h-full flex flex-col p-8 overflow-visible group">
             <div className="relative z-20 flex flex-col h-full">
                 <div className="flex items-center gap-2 mb-4 text-neon-cyan">
                     <Globe className="w-5 h-5" />
@@ -141,87 +141,240 @@ const GlobalReachCard = () => {
                     Offer a fast and secure solution for your users to send and receive money globally.
                 </p>
 
-                {/* Floating "Live Status" Card - Centered on Mobile */}
-                <div className="mt-auto md:mt-0 self-center md:self-start bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 w-full max-w-[240px] transform transition-transform group-hover:scale-105">
-                    <div className="flex items-center gap-2 mb-2">
+                {/* Floating "Live Transactions" Card - Pac-Man Style */}
+                <div className="mt-auto md:mt-0 self-center md:self-start bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 w-full max-w-[280px] transform transition-transform group-hover:scale-105">
+                    <div className="flex items-center gap-2 mb-4">
                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                        <span className="text-xs font-mono text-gray-300">Live Network</span>
+                        <span className="text-xs font-mono text-gray-300">Live Swaps</span>
                     </div>
-                    <div className="space-y-2">
-                        <div className="flex justify-between text-xs text-white">
-                            <span>KES</span>
-                            <span className="text-gray-400">→</span>
-                            <span>USDC</span>
+
+                    <div className="space-y-4">
+                        {/* Transaction 1: KES eating USDC */}
+                        <div className="relative">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[10px] font-mono text-gray-400">KES → USDC</span>
+                                <span className="text-[9px] text-gray-500 font-mono">$1,250</span>
+                            </div>
+                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                                {/* Dots/Pills to be eaten */}
+                                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
+                                    {[...Array(5)].map((_, i) => (
+                                        <motion.div
+                                            key={i}
+                                            className="w-1 h-1 rounded-full bg-neon-cyan/40"
+                                            animate={{
+                                                opacity: [0.4, 0, 0.4],
+                                                scale: [1, 0, 1]
+                                            }}
+                                            transition={{
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                delay: i * 0.15,
+                                                times: [0, 0.5, 1]
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+
+                                {/* Pac-Man KES chasing */}
+                                <motion.div
+                                    className="absolute top-1/2 -translate-y-1/2 flex items-center"
+                                    animate={{
+                                        left: ["-15%", "100%"]
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "linear"
+                                    }}
+                                >
+                                    <div className="relative">
+                                        {/* Pac-Man mouth animation */}
+                                        <motion.div
+                                            className="w-6 h-6 bg-neon-cyan rounded-full relative overflow-hidden"
+                                            animate={{
+                                                clipPath: [
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)",
+                                                    "polygon(100% 50%, 0% 40%, 0% 60%)",
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)"
+                                                ]
+                                            }}
+                                            transition={{
+                                                duration: 0.3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-[6px] font-bold text-black font-mono">KES</span>
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Target USDC badge */}
+                                <div className="absolute top-1/2 -translate-y-1/2 right-2 bg-neon-cyan/20 border border-neon-cyan px-2 py-0.5 rounded text-[8px] font-bold text-neon-cyan font-mono">
+                                    USDC
+                                </div>
+                            </div>
                         </div>
-                        <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full bg-neon-cyan"
-                                animate={{ x: ["-100%", "100%"] }}
-                                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                            />
+
+                        {/* Transaction 2: USDT eating GHS */}
+                        <div className="relative">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[10px] font-mono text-gray-400">USDT → GHS</span>
+                                <span className="text-[9px] text-gray-500 font-mono">$890</span>
+                            </div>
+                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                                {/* Dots/Pills to be eaten */}
+                                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
+                                    {[...Array(5)].map((_, i) => (
+                                        <motion.div
+                                            key={i}
+                                            className="w-1 h-1 rounded-full bg-electric-gold/40"
+                                            animate={{
+                                                opacity: [0.4, 0, 0.4],
+                                                scale: [1, 0, 1]
+                                            }}
+                                            transition={{
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                delay: 1 + i * 0.15,
+                                                times: [0, 0.5, 1]
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+
+                                {/* Pac-Man USDT chasing */}
+                                <motion.div
+                                    className="absolute top-1/2 -translate-y-1/2 flex items-center"
+                                    animate={{
+                                        left: ["-15%", "100%"]
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                        delay: 1
+                                    }}
+                                >
+                                    <div className="relative">
+                                        {/* Pac-Man mouth animation */}
+                                        <motion.div
+                                            className="w-6 h-6 bg-electric-gold rounded-full relative overflow-hidden"
+                                            animate={{
+                                                clipPath: [
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)",
+                                                    "polygon(100% 50%, 0% 40%, 0% 60%)",
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)"
+                                                ]
+                                            }}
+                                            transition={{
+                                                duration: 0.3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-[6px] font-bold text-black font-mono">USDT</span>
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Target GHS badge */}
+                                <div className="absolute top-1/2 -translate-y-1/2 right-2 bg-electric-gold/20 border border-electric-gold px-2 py-0.5 rounded text-[8px] font-bold text-electric-gold font-mono">
+                                    GHS
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex justify-between text-xs text-white">
-                            <span>USDT</span>
-                            <span className="text-gray-400">→</span>
-                            <span>GHS</span>
-                        </div>
-                        <div className="w-full bg-white/10 h-1 rounded-full overflow-hidden">
-                            <motion.div
-                                className="h-full bg-electric-gold"
-                                animate={{ x: ["-100%", "100%"] }}
-                                transition={{ duration: 1.8, repeat: Infinity, ease: "linear", delay: 0.5 }}
-                            />
+
+                        {/* Transaction 3: NGN eating USDT */}
+                        <div className="relative">
+                            <div className="flex items-center justify-between mb-2">
+                                <span className="text-[10px] font-mono text-gray-400">NGN → USDT</span>
+                                <span className="text-[9px] text-gray-500 font-mono">$2,100</span>
+                            </div>
+                            <div className="relative h-8 bg-white/5 rounded-lg overflow-hidden">
+                                {/* Dots/Pills to be eaten */}
+                                <div className="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-around px-2">
+                                    {[...Array(5)].map((_, i) => (
+                                        <motion.div
+                                            key={i}
+                                            className="w-1 h-1 rounded-full bg-green-400/40"
+                                            animate={{
+                                                opacity: [0.4, 0, 0.4],
+                                                scale: [1, 0, 1]
+                                            }}
+                                            transition={{
+                                                duration: 3,
+                                                repeat: Infinity,
+                                                delay: 2 + i * 0.15,
+                                                times: [0, 0.5, 1]
+                                            }}
+                                        />
+                                    ))}
+                                </div>
+
+                                {/* Pac-Man NGN chasing */}
+                                <motion.div
+                                    className="absolute top-1/2 -translate-y-1/2 flex items-center"
+                                    animate={{
+                                        left: ["-15%", "100%"]
+                                    }}
+                                    transition={{
+                                        duration: 3,
+                                        repeat: Infinity,
+                                        ease: "linear",
+                                        delay: 2
+                                    }}
+                                >
+                                    <div className="relative">
+                                        {/* Pac-Man mouth animation */}
+                                        <motion.div
+                                            className="w-6 h-6 bg-green-400 rounded-full relative overflow-hidden"
+                                            animate={{
+                                                clipPath: [
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)",
+                                                    "polygon(100% 50%, 0% 40%, 0% 60%)",
+                                                    "polygon(100% 50%, 0% 0%, 0% 100%)"
+                                                ]
+                                            }}
+                                            transition={{
+                                                duration: 0.3,
+                                                repeat: Infinity,
+                                                ease: "easeInOut"
+                                            }}
+                                        >
+                                            <div className="absolute inset-0 flex items-center justify-center">
+                                                <span className="text-[6px] font-bold text-black font-mono">NGN</span>
+                                            </div>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+
+                                {/* Target USDT badge */}
+                                <div className="absolute top-1/2 -translate-y-1/2 right-2 bg-green-400/20 border border-green-400 px-2 py-0.5 rounded text-[8px] font-bold text-green-400 font-mono">
+                                    USDT
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                {/* Stats Footer */}
+                {/* <div className="flex items-center justify-between text-[10px] pt-3 border-t border-white/5">
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-neon-cyan"></div>
+                            <span className="text-gray-400">5 Active Nodes</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-electric-gold"></div>
+                            <span className="text-gray-400">3 Transfers/sec</span>
+                        </div>
+                    </div> */}
             </div>
-
-            {/* Abstract Network Background */}
-            <div className="absolute inset-0 z-0">
-                <svg className="w-full h-full opacity-30" viewBox="0 0 400 400">
-                    <defs>
-                        <linearGradient id="netGrad" x1="0" y1="0" x2="1" y2="1">
-                            <stop offset="0%" stopColor="#00f3ff" stopOpacity="0" />
-                            <stop offset="50%" stopColor="#00f3ff" stopOpacity="1" />
-                            <stop offset="100%" stopColor="#00f3ff" stopOpacity="0" />
-                        </linearGradient>
-                    </defs>
-
-                    {/* Connection Lines */}
-                    {[...Array(6)].map((_, i) => (
-                        <motion.line
-                            key={i}
-                            x1={200} y1={200}
-                            x2={200 + Math.cos(i) * 150} y2={200 + Math.sin(i) * 150}
-                            stroke="url(#netGrad)"
-                            strokeWidth="1"
-                            initial={{ pathLength: 0, opacity: 0 }}
-                            animate={{ pathLength: [0, 1, 0], opacity: [0, 1, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, delay: i * 0.5, ease: "easeInOut" }}
-                        />
-                    ))}
-
-                    {/* Nodes */}
-                    {[...Array(6)].map((_, i) => (
-                        <motion.circle
-                            key={`node-${i}`}
-                            cx={200 + Math.cos(i) * 150} cy={200 + Math.sin(i) * 150}
-                            r="4"
-                            fill="#fff"
-                            initial={{ scale: 0 }}
-                            animate={{ scale: [0, 1, 0] }}
-                            transition={{ duration: 3, repeat: Infinity, delay: i * 0.5 + 1.5, ease: "easeInOut" }}
-                        />
-                    ))}
-
-                    {/* Central Hub */}
-                    <circle cx="200" cy="200" r="20" fill="url(#netGrad)" opacity="0.2" className="animate-pulse" />
-                    <circle cx="200" cy="200" r="8" fill="#fff" />
-                </svg>
-            </div>
-
-            {/* Gradient Glow */}
-            <div className="absolute bottom-0 right-0 w-64 h-64 bg-neon-cyan/10 rounded-full blur-[80px] pointer-events-none" />
         </div>
     );
 };
@@ -269,7 +422,7 @@ const BentoGrid = () => {
                     {/* Card 3: Global Reach (Full width or span) - Let's do 2-1 layout, or just 3 cols */}
                     {/* Actually, let's mix it up. 3 Equal cols? Or Bento style. */}
                     {/* Let's make Global Reach standard */}
-                    <CardWrapper className="md:col-span-3">
+                    <CardWrapper className="md:col-span-3 min-h-[500px]">
                         <GlobalReachCard />
                     </CardWrapper>
                 </div>
